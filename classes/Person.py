@@ -9,6 +9,7 @@ class Person:
         self.country = data['country']
         self.country_code = data['country_code']
         self.city = data['city']
+        self.average_salary = data['average_salary']
 
     def __str__(self) -> str:
         return f'{self.first_name} {self.last_name}, {self.city}, {self.country}'
