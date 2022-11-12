@@ -1,4 +1,5 @@
 import mysql.connector as con
+from classes.Person import Person
 
 class DB:
 
@@ -30,3 +31,20 @@ class DB:
             countries.append(r[0])
         
         return countries
+
+
+    @staticmethod
+    def select_people_for_country(name, order='ASC'):
+        db = DB.connect()
+        c = db.cursor(dictionary=True)
+
+        c.execute(f"""SELECT * FROM people 
+                      WHERE country='{name}' 
+                      ORDER BY first_name {order};""")
+        records = c.fetchall()
+
+        people = []
+        for r in records:
+            people.append(Person(r))
+
+        return people
