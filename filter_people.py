@@ -50,8 +50,21 @@ while True:
     if event == '_DETAILS_':
         window['_L_MAIN_'].update(visible = False)
         window['_L_DETAILS_'].update(visible = True)
+        person = values['_LIST_RESULTS_'][0]
+        window['_FN_'].update(value = person.first_name)
+        window['_LN_'].update(value=person.last_name)
+        window['_EM_'].update(value=person.email)
+        window['_LOC_'].update(value=f'{person.city}, {person.country} ({person.country_code})')
+        window['_BD_'].update(value=person.birthday)
+        window['_AVGS_'].update(value=person.average_salary)
     if event == '_BACK_':
         window['_L_MAIN_'].update(visible = True)
         window['_L_DETAILS_'].update(visible = False)
-    
+    if event == '_FILTER_COUNTRY_':
+        country = values['_COMBO_COUNTRY_']
+        order = "ASC" if values['_RB_ASC_'] == True else "DESC"
+        people = DB.select_people_for_country(country, order)
+        window['_LIST_RESULTS_'].update(values = people)
+
+
 window.close()
