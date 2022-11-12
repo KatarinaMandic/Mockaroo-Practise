@@ -1,1 +1,5 @@
+#Text files
 Sql_scripts.txt
+
+#Auto generated files
+classes/__pycache__/*
